@@ -1,22 +1,12 @@
 import { Row, Table } from "react-bootstrap";
-import { getCalculatedPlans } from "../../services/ApiService";
-import { useEffect, useState } from "react";
+import { adicionarZerosEsquerda, formatarDouble } from "../../utils/formatters";
+import { ApiResponse } from "../../services/ApiService";
 
-export default function Result() {
+type props = {
+    plans: ApiResponse[],
+}
 
-    const [plans, setPlans] = useState([]);
-    
-    useEffect(() => {
-        const returnData = async () => {
-            try {
-                const response = await getCalculatedPlans(11, 16, 20);
-                console.log(response);
-            } catch (error) {
-                console.error("Error fetching plans:", error);
-            }
-        }
-        returnData();
-    }, []);
+export default function Result({ plans }: props) {
     
     return (
         <>
@@ -26,7 +16,7 @@ export default function Result() {
             <Row>
                 <Table striped bordered hover>
                     <thead>
-                        <tr>
+                        <tr className="text-center">
                             <th>Origem</th>
                             <th>Destino</th>
                             <th>Plano</th>
@@ -35,15 +25,15 @@ export default function Result() {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {plans.map(item => (
-                            <tr>
-                                <td>{item.origin}</td>
-                                <td>{item.destination}</td>
+                        {plans.map((item, index) => (
+                            <tr className="text-center" key={index}>
+                                <td>{adicionarZerosEsquerda(item.origin)}</td>
+                                <td>{adicionarZerosEsquerda(item.destination)}</td>
                                 <td>{item.plan}</td>
-                                <td>{item.no_plan_price}</td>
-                                <td>{item.with_plan_price}</td>
+                                <td>R$ {formatarDouble(item.no_plan_price)}</td>
+                                <td>R$ {formatarDouble(item.with_plan_price)}</td>
                             </tr>
-                        ))} */}
+                        ))}
                     </tbody>
                 </Table>
             </Row>
