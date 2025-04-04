@@ -1,4 +1,5 @@
 import { Button, Card, Col, Form, InputGroup, Row } from 'react-bootstrap'
+import Result from '../Result';
 
 export default function SearchCard () {
     return (
@@ -32,6 +33,11 @@ export default function SearchCard () {
                                 Calcular
                             </Button>
                             </InputGroup>
+                        </Col>
+                    </Row>
+                    <Row className='mt-5'>
+                        <Col>
+                            <Result />
                         </Col>
                     </Row>
                 </Card.Body>
