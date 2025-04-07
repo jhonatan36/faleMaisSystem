@@ -13,7 +13,6 @@ estou usando React + vite no front e Laravel 10 + sanctun no back.
 
 ### BACK
 ____
-Foi utilizado Laravel 11 para criação da API
 
 ### Instruções para configurar uso do back
 
